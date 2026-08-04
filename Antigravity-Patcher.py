@@ -223,7 +223,32 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Select light, dark, or inherit system settings.": "选择浅色、深色，或跟随系统设置。",
     "Light Theme": "浅色主题", "Preset": "预设", "Default Light": "默认浅色",
     "Background": "背景颜色", "Foreground": "前景颜色", "Accent": "强调色",
-    "Dark Theme": "深色主题", "Default Dark": "默认深色"
+    "Dark Theme": "深色主题", "Default Dark": "默认深色",
+    // Permission Dialog
+    "Allow write access to this path?": "允许写入此路径吗？",
+    "Allow read access to this path?": "允许读取此路径吗？",
+    "Allow execution of this command?": "允许执行此命令吗？",
+    "Yes, allow this time": "是，仅本次允许",
+    "Yes, and always allow in this conversation": "是，在本次对话中始终允许",
+    "Yes, and always allow when not in a project": "是，在未分组项目中始终允许",
+    "Yes, and always allow": "是，始终允许",
+    "tell the agent what to do instead": "告诉智能体接下来该做什么",
+    "(tell the agent what to do instead)": "(告诉智能体接下来该做什么)",
+    "Skip": "跳过",
+    "Working.": "运行中。",
+    "Working...": "运行中...",
+    "Edited": "已编辑",
+    "Viewed": "已查看",
+    "Created": "已创建",
+    "Deleted": "已删除",
+    "Executed": "已执行",
+    // Save Rule Dialog
+    "Save rule to always allow write access to this path?": "保存规则以始终允许写入此路径吗？",
+    "Save rule to always allow read access to this path?": "保存规则以始终允许读取此路径吗？",
+    "Save rule to always allow execution of this command?": "保存规则以始终允许执行此命令吗？",
+    "Yes, save rule in this conversation": "是，在本次对话中保存规则",
+    "Yes, save rule when not in a project": "是，在未分组项目中保存规则",
+    "Yes, save rule globally": "是，全局保存规则"
   };
 
   const coreWords = {
@@ -276,7 +301,10 @@ DOM_TRANSLATOR_INJECTION = r"""
       return text.replace(trimmed, "以 " + m[1] + " 的身份发送反馈");
     }
     if ((m = trimmed.match(/^(\+?\d+) more lines$/))) {
-      return text.replace(trimmed, m[1] + " 更多行");
+      return text.replace(trimmed, "更多 " + m[1] + " 行");
+    }
+    if ((m = trimmed.match(/^(\d+) files? changed$/))) {
+      return text.replace(trimmed, m[1] + " 个文件已修改");
     }
     // Bulletproof fallback replacements for stubborn text fragments
     if (text.indexOf("Configure the browser subagent") !== -1) {
@@ -297,10 +325,25 @@ DOM_TRANSLATOR_INJECTION = r"""
     if (text.indexOf("Add an MCP server above") !== -1) {
       text = text.replace(/Add an MCP server above or add a custom one via the MCP Config\./g, "请在上方添加 MCP 服务器，或通过 MCP 配置添加自定义服务器。");
     }
-    if (text.indexOf("customization budget is available") !== -1) {
-      text = text.replace(/(\d+(?:\.\d+)?)%\s*of the customization budget is available\.?/g, "自定义项预算可用额度为 $1%。");
+    if (text.indexOf("of the customization budget is available") !== -1) {
+      text = text.replace(/(\d+(?:\.\d+)?)% of the customization budget is available\.?/g, "自定义项预算可用额度为 $1%。");
       text = text.replace(/%\s*of the customization budget is available\.?/g, "% 的自定义项预算可用额度。");
       text = text.replace(/(^\s*)of the customization budget is available\.?/g, "$1的自定义项预算可用额度。");
+    }
+    if (text.indexOf("Worked for") !== -1) {
+      text = text.replace(/Worked for ([\d\.a-z ]+)/gi, function(match, timeStr) {
+        let translatedTime = timeStr.replace(/ms/g, "毫秒").replace(/s/g, "秒").replace(/m/g, "分").replace(/h/g, "小时");
+        return "运行耗时 " + translatedTime;
+      });
+    }
+    if (text.indexOf("Working") !== -1) {
+      text = text.replace(/Working(\.*)/g, "运行中$1");
+    }
+    if (text.indexOf("Thought for") !== -1) {
+      text = text.replace(/Thought for ([\d\.a-z ]+)/gi, function(match, timeStr) {
+        let translatedTime = timeStr.replace(/ms/g, "毫秒").replace(/s/g, "秒").replace(/m/g, "分").replace(/h/g, "小时");
+        return "思考耗时 " + translatedTime;
+      });
     }
     
     // Bulletproof skill description match
