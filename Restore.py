@@ -1,22 +1,28 @@
 # coding: utf-8
 import os
 import shutil
+import subprocess
 
 APP_DIR = os.path.join(os.getenv('LOCALAPPDATA'), 'Programs', 'antigravity')
 RESOURCES_DIR = os.path.join(APP_DIR, "resources")
 ASAR_PATH = os.path.join(RESOURCES_DIR, "app.asar")
 DISABLED_PATH = ASAR_PATH + ".disabled"
+UNPACKED_APP_DIR = os.path.join(RESOURCES_DIR, "app")
 
 def restore():
-    print("=======================================================")
-    print("          Antigravity v2.5.0 桌面端 纯净版还原工具")
-    print("=======================================================")
-    print("\n正在为您关闭 Antigravity 程序...")
+    print("===================================================================")
+    print("                                                                   ")
+    print("         Antigravity v2.8.1 桌面端 纯净版还原工具                 ")
+    print("Github 开源项目地址：https://github.com/MIMICTE/Antigravity-zh-CN")
+    print("                                                                   ")
+    print("==================================================================")
+    print("                                                                   ")
+    print("[执行] 正在为您关闭 Antigravity 程序...")
     os.system("taskkill /F /IM Antigravity.exe >nul 2>&1")
 
     if os.path.exists(DISABLED_PATH):
-        print(f"\n[执行] 找到已禁用的原始语言包: app.asar.disabled")
-        print("正在恢复...")
+        print("[执行] 找到已禁用的原始语言包: app.asar.disabled")
+        print("[执行] 正在恢复官方原版核心文件...")
         
         if os.path.exists(ASAR_PATH):
             try:
@@ -27,21 +33,40 @@ def restore():
 
         try:
             os.rename(DISABLED_PATH, ASAR_PATH)
-            unpacked_dir = os.path.join(RESOURCES_DIR, "app")
-            if os.path.exists(unpacked_dir):
-                shutil.rmtree(unpacked_dir, ignore_errors=True)
-            print("\n=======================================================")
-            print("  还原成功！正在为您自动启动纯净版 Antigravity v2.5.0...")
-            print("=======================================================")
+            if os.path.exists(UNPACKED_APP_DIR):
+                shutil.rmtree(UNPACKED_APP_DIR, ignore_errors=True)
+            print("==================================================================")
+            print("  还原成功！正在为您自动启动纯净版 Antigravity...")
+            print("                                                                   ")
+            print("==================================================================")
+            
             exe_path = os.path.join(APP_DIR, "Antigravity.exe")
             if os.path.exists(exe_path):
-                os.startfile(exe_path)
+                DETACHED_PROCESS = 0x00000008
+                CREATE_NEW_PROCESS_GROUP = 0x00000200
+                subprocess.Popen(
+                    [exe_path],
+                    stdin=subprocess.DEVNULL,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    creationflags=DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP,
+                    close_fds=True
+                )
         except Exception as e:
             print(f"[错误] 恢复文件时出错: {e}")
     else:
-        print("\n[状态] 未发现已禁用的语言包 (app.asar.disabled)。")
-        print("或者软件当前已经是原版状态。")
-        print("=======================================================")
+        if os.path.exists(UNPACKED_APP_DIR):
+            print("[状态] 未发现已禁用的语言包 (app.asar.disabled)，但发现注入工作区。")
+            print("[执行] 正在清理汉化注入残留文件...")
+            shutil.rmtree(UNPACKED_APP_DIR, ignore_errors=True)
+            print("==================================================================")
+            print("  清理成功！软件当前已是原版状态。")
+            print("==================================================================")
+        else:
+            print("[状态] 未发现已禁用的语言包 (app.asar.disabled)。")
+            print("[状态] 软件当前已经是原版纯净状态。")
+            print("                                                                   ")
+            print("==================================================================")
 
 if __name__ == "__main__":
     try:

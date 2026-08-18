@@ -16,7 +16,7 @@
 
 ## 📖 项目简介
 
-**Antigravity v2.5.0 一键汉化补丁** - 为 Google Antigravity 桌面端提供完整的中文界面支持。
+**Antigravity v2.8.1 一键汉化补丁** - 为 Google Antigravity 桌面端提供完整的中文界面支持。
 
 本项目采用独创的 **Web 注入与原生 ASAR 解包技术**，在完全不破坏原版软件安全性和稳定性的前提下，实现了目前技术上限内的最完美汉化。
 
@@ -30,14 +30,30 @@
 
 ## 📦 下载与安装
 
-### 方式一：Python 脚本版
+### 方式一：EXE 独立免安装版 ⭐ 推荐普通用户
 
-**下载：** [Antigravity-zh-CN-v2.5.0-Windows-x64.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
+**下载：** [Antigravity-zh-CN-v2.8.1-Windows-x64-exe.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
 
 **特点：**
-- ✅ 开源透明，可审查代码
-- ✅ 文件小巧（约 40 KB）
-- ✅ 不会被杀毒软件误报
+- ✅ 开箱即用，**无需安装 Python** 环境
+- ✅ 内置官方 Antigravity 高清图标，原生软件级体验
+- ✅ 双击直接运行即可完成汉化或还原
+
+**使用方法：**
+1. 下载并解压 ZIP 文件
+2. 双击运行 `Antigravity-Patcher.exe` 开始汉化
+3. 如需还原，双击运行 `Restore.exe` 即可一键恢复为官方英文版
+
+---
+
+### 方式二：Python 脚本版 ⭐ 推荐已有 Python 环境用户
+
+**下载：** [Antigravity-zh-CN-v2.8.1-Windows-x64.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
+
+**特点：**
+- ✅ 开源透明，可随时审查代码
+- ✅ 文件极其小巧（仅约 60 KB）
+- ✅ 不会被任何杀毒软件误报
 
 **前置要求：**
 
@@ -65,7 +81,7 @@
 
 ---
 
-### 方式二：从源码安装⭐ 推荐开发者
+### 方式三：从源码安装 ⭐ 推荐开发者
 
 **克隆仓库：**
 ```bash
@@ -95,7 +111,7 @@ python Antigravity-Patcher.py
 
 - **思考日志为英文** - 受限于大模型的即时流式输出架构，智能体后台生成的思考日志（`Thought` 过程）无法汉化，但所有最终回复与前端界面均已 100% 汉化
 - **仅支持 Windows** - 目前仅适配 Windows 平台，macOS 和 Linux 需要单独适配
-- **版本依赖** - 针对 Antigravity v2.5.0 优化，其他版本可能需要调整
+- **版本依赖** - 针对 Antigravity v2.8.1 深度优化，其他版本亦具备高度兼容性
 
 ## 📸 效果展示
 
@@ -113,7 +129,7 @@ python Antigravity-Patcher.py
 - ✅ 输入框提示文本和模型选择器
 - ✅ 设置页面所有选项和说明
 
-> 💡 提示：要查看实际效果，双击运行 `Antigravity-Patcher.py` 或 `Antigravity-Patcher.exe` 即可体验完整的中文界面！
+> 💡 提示：要查看实际效果，双击运行 `Antigravity-Patcher.exe` 或 `Antigravity-Patcher.py` 即可体验完整的中文界面！
 
 ## 🔐 安全性说明
 
@@ -136,7 +152,7 @@ python Antigravity-Patcher.py
 ### 关于 .exe 版本
 
 - .exe 文件使用 [PyInstaller](https://pyinstaller.org/) 开源工具打包
-- 包含完整的 Python 运行时环境（因此文件较大约 7-8 MB）
+- 包含完整的 Python 运行时环境（因此文件较大约 8 MB）
 - 可能被部分杀毒软件误报，这是 PyInstaller 的已知问题
 - 如有安全顾虑，推荐使用 Python 脚本版（代码完全透明）
 
@@ -151,13 +167,13 @@ A:
 - **Python 脚本版**：需要 Python 环境，文件小，代码透明
 - **.exe 版本**：无需 Python，开箱即用，但文件较大且可能误报
 
-两者功能完全相同，推荐根据自己的技术水平选择。
+两者功能完全相同，推荐根据自己的需求选择。
 </details>
 
 <details>
 <summary><b>Q: 为什么 .exe 文件这么大？</b></summary>
 
-A: .exe 文件包含了完整的 Python 运行时环境，所以约 7-8 MB 是正常的。
+A: .exe 文件包含了完整的 Python 运行时环境，所以约 8 MB 是正常的。
 </details>
 
 <details>
@@ -172,14 +188,14 @@ A: 这是 PyInstaller 打包的已知问题，非真实病毒。可以：
 <details>
 <summary><b>Q: 为什么执行脚本时提示 "Python 不是内部或外部命令"？</b></summary>
 
-A: 这说明 Python 没有添加到系统环境变量中。请重新安装 Python，并在安装时勾选 "Add Python to PATH" 选项。
+A: 这说明 Python 没有添加到系统环境变量中。请重新安装 Python，并在安装时勾选 "Add Python to PATH" 选项，或者直接使用无需 Python 环境的 `.exe` 版本。
 </details>
 
 <details>
 <summary><b>Q: 执行汉化后软件无法启动怎么办？</b></summary>
 
 A: 请尝试以下步骤：
-1. 执行 `Restore.py` 或 `Restore.exe` 还原到原版
+1. 执行 `Restore.exe` 或 `Restore.py` 还原到原版
 2. 确保 Antigravity 原版能正常运行
 3. 检查是否有杀毒软件阻止了脚本执行
 4. 以管理员身份运行脚本
@@ -198,7 +214,7 @@ A: 这是正常现象。由于以下原因，部分内容无法汉化：
 <summary><b>Q: 软件更新后汉化失效了怎么办？</b></summary>
 
 A: Antigravity 更新可能会覆盖汉化文件。请：
-1. 执行 `Restore.py` 或 `Restore.exe` 清理旧版本汉化
+1. 执行 `Restore.exe` 或 `Restore.py` 清理旧版本汉化
 2. 等待本项目更新以支持新版本
 3. 或者在新版本上重新执行汉化脚本（可能不稳定）
 </details>

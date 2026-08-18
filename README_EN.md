@@ -16,7 +16,7 @@ An open-source Chinese localization patch for Google Antigravity Desktop
 
 ## 📖 Project Overview
 
-**Antigravity v2.5.0 Chinese Localization Patch** - Provides complete Chinese interface support for Google Antigravity desktop application.
+**Antigravity v2.8.1 Chinese Localization Patch** - Provides complete Chinese interface support for Google Antigravity desktop application.
 
 This project uses innovative **Web Injection and Native ASAR Unpacking Technology** to achieve perfect localization without compromising the original software's security and stability.
 
@@ -30,14 +30,30 @@ This project uses innovative **Web Injection and Native ASAR Unpacking Technolog
 
 ## 📦 Download & Installation
 
-### Option 1: Python Script Version 
+### Option 1: Standalone EXE Version ⭐ Recommended for Most Users
 
-**Download:** [Antigravity-zh-CN-v2.5.0-Windows-x64.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
+**Download:** [Antigravity-zh-CN-v2.8.1-Windows-x64-exe.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
+
+**Features:**
+- ✅ Ready to use, **no Python environment required**
+- ✅ Includes official Antigravity HD icons for native look and feel
+- ✅ Double-click to run patch or restore directly
+
+**How to use:**
+1. Download and extract the ZIP file
+2. Double-click `Antigravity-Patcher.exe` to apply the patch
+3. To revert, double-click `Restore.exe` to restore to the official English version
+
+---
+
+### Option 2: Python Script Version ⭐ Recommended with Python Installed
+
+**Download:** [Antigravity-zh-CN-v2.8.1-Windows-x64.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
 
 **Features:**
 - ✅ Open source and transparent, auditable code
-- ✅ Small file size (about 40 KB)
-- ✅ Won't be flagged by antivirus software
+- ✅ Tiny file size (~60 KB)
+- ✅ Never flagged by antivirus software
 
 **Prerequisites:**
 
@@ -53,7 +69,7 @@ The script will automatically:
 - Unpack and inject localization code
 - Restart the software with Chinese interface
 
-3. Double-click `Restore.py` to restore to official English version
+3. Double-click `Restore.py` to restore to the official English version
 
 > 💡 **Tip**: If double-clicking doesn't work, try:
 > - Right-click → "Open with" → "Python"
@@ -65,7 +81,7 @@ The script will automatically:
 
 ---
 
-### Option 2: Install from Source ⭐ Recommended for Developers
+### Option 3: Install from Source ⭐ Recommended for Developers
 
 **Clone the repository:**
 ```bash
@@ -95,7 +111,7 @@ Pure Python implementation of ASAR file format parser with zero external depende
 
 - **Thought Process in English** - Due to AI model's streaming output architecture, the agent's backend thinking logs (`Thought` process) cannot be localized, but all final responses and frontend UI elements are 100% localized
 - **Windows Only** - Currently only supports Windows platform; macOS and Linux require separate adaptations
-- **Version Specific** - Optimized for Antigravity v2.5.0; other versions may require adjustments
+- **Version Specific** - Deeply optimized for Antigravity v2.8.1 with robust compatibility across versions
 
 ## 📸 Screenshots
 
@@ -113,7 +129,7 @@ Pure Python implementation of ASAR file format parser with zero external depende
 - ✅ Input placeholder text and model selector
 - ✅ Settings page with all options and descriptions
 
-> 💡 Tip: To see the actual result, simply double-click `Antigravity-Patcher.py` or `Antigravity-Patcher.exe` to experience the complete Chinese interface!
+> 💡 Tip: To see the actual result, simply double-click `Antigravity-Patcher.exe` or `Antigravity-Patcher.py` to experience the complete Chinese interface!
 
 ## 🔐 Security
 
@@ -136,7 +152,7 @@ This project is completely open-source and secure:
 ### About the .exe Version
 
 - .exe files are packaged using [PyInstaller](https://pyinstaller.org/) open-source tool
-- Contains complete Python runtime environment (hence larger file size ~7-8 MB)
+- Contains complete Python runtime environment (hence file size ~8 MB)
 - May be flagged by some antivirus software, which is a known PyInstaller issue
 - If you have security concerns, use the Python script version (completely transparent code)
 
@@ -151,13 +167,13 @@ A:
 - **Python script version**: Requires Python environment, small size, transparent code
 - **.exe version**: No Python needed, ready to use, but larger file size and may trigger false positives
 
-Both versions have identical functionality. Choose based on your technical comfort level.
+Both versions have identical functionality. Choose based on your needs.
 </details>
 
 <details>
 <summary><b>Q: Why is the .exe file so large?</b></summary>
 
-A: The .exe file includes the complete Python runtime environment, so ~7-8 MB is normal.
+A: The .exe file includes the complete Python runtime environment, so ~8 MB is normal.
 </details>
 
 <details>
@@ -172,14 +188,14 @@ A: This is a known PyInstaller issue, not an actual virus. You can:
 <details>
 <summary><b>Q: "Python is not recognized as an internal or external command"?</b></summary>
 
-A: Python is not added to your system PATH. Reinstall Python and make sure to check "Add Python to PATH" during installation.
+A: Python is not added to your system PATH. Reinstall Python and make sure to check "Add Python to PATH" during installation, or use the standalone `.exe` version instead.
 </details>
 
 <details>
 <summary><b>Q: Software won't start after applying the patch?</b></summary>
 
 A: Try these steps:
-1. Run `Restore.py` or `Restore.exe` to restore original version
+1. Run `Restore.exe` or `Restore.py` to restore original version
 2. Ensure the original Antigravity works properly
 3. Check if antivirus software is blocking the script
 4. Run the script as administrator
@@ -198,7 +214,7 @@ A: This is normal. Some content cannot be localized because:
 <summary><b>Q: Localization stops working after software update?</b></summary>
 
 A: Antigravity updates may overwrite localization files. Please:
-1. Run `Restore.py` or `Restore.exe` to clean up old version
+1. Run `Restore.exe` or `Restore.py` to clean up old version
 2. Wait for this project to update for the new version
 3. Or re-run the patch script on the new version (may be unstable)
 </details>
