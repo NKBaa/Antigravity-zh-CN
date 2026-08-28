@@ -500,6 +500,9 @@ DOM_TRANSLATOR_INJECTION = r"""
       let timeStr = m[1].replace(/days?/g, "天").replace(/hours?/g, "小时").replace(/minutes?/g, "分钟").replace(/,/g, "");
       return text.replace(trimmed, "您已使用部分五小时限额，它将在 " + timeStr + " 后完全重置。");
     }
+    if ((m = trimmed.match(/^Your plan's baseline quota will refresh on (.+?)\. To continue using this model now, enable AI Credit overages\.?$/i))) {
+      return text.replace(trimmed, "您套餐的基础配额将于 " + m[1] + " 重置。若要立即继续使用此模型，请启用 AI 积分超额使用。");
+    }
     if ((m = trimmed.match(/^Available AI Credits: ([\d,]+)$/))) {
       return text.replace(trimmed, "可用 AI 积分: " + m[1]);
     }
