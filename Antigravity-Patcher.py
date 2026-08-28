@@ -4,8 +4,18 @@ import json
 import struct
 import subprocess
 
-APP_DIR = os.path.join(os.getenv('LOCALAPPDATA'), 'Programs', 'antigravity')
-RESOURCES_DIR = os.path.join(APP_DIR, "resources")
+import sys
+
+if sys.platform == "win32":
+    APP_DIR = os.path.join(os.getenv('LOCALAPPDATA', ''), 'Programs', 'antigravity')
+    RESOURCES_DIR = os.path.join(APP_DIR, "resources")
+elif sys.platform == "darwin":
+    APP_DIR = "/Applications/Antigravity.app"
+    RESOURCES_DIR = os.path.join(APP_DIR, "Contents", "Resources")
+else:
+    print("[错误] 当前仅支持 Windows 和 macOS 系统。")
+    sys.exit(1)
+
 ASAR_PATH = os.path.join(RESOURCES_DIR, "app.asar")
 UNPACKED_APP_DIR = os.path.join(RESOURCES_DIR, "app")
 
@@ -25,9 +35,11 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Weekly Limit Remaining": "每周限额剩余", "Five Hour Limit Remaining": "五小时限额剩余",
     "limit": "限额", "limits": "限额", "weekly": "每周", "hourly": "每小时",
     "Sidebar": "侧边栏", "Display Options": "显示选项", "Message input": "消息输入框", "Record voice memo": "录制语音备忘",
-    "Typeahead menu": "预输入菜单", "Group By": "分组方式", "Last Updated": "最后更新",
-    "Alphabetical (A-Z)": "字母顺序 (A-Z)", "Date Added": "添加日期", "Subtitles": "副标题", "No Subtitle": "无副标题",
+    "Typeahead menu": "预输入菜单", "Group By": "分组方式", "Last Updated": "最后更新", "Last Prompt": "最新提示词", "Last prompt": "最新提示词",
+    "Alphabetical (A-Z)": "字母顺序 (A-Z)", "Alphabetical (Z-A)": "字母倒序 (Z-A)", "Date Added": "添加日期", "Creation Date": "创建日期", "Created Date": "创建日期", "Subtitles": "副标题", "No Subtitle": "无副标题",
     "Filter": "筛选", "Scheduled": "已计划", "Environment": "环境", "None": "无", "Fast": "快速",
+    "Last 7 days": "最近 7 天", "Last 24 hours": "最近 24 小时", "Last 30 days": "最近 30 天", "Last 3 months": "最近 3 个月",
+    "Today": "今天", "Yesterday": "昨天", "This week": "本周", "This month": "本月", "All time": "全部时间",
     "Project": "项目", "project": "项目", "projects": "项目", "Conversation": "对话", "conversation": "对话",
     "Workspace": "工作区", "workspace": "工作区", "Minimize": "最小化", "Maximize": "最大化", "Back": "返回",
     "Folders": "文件夹", "folders": "文件夹", "Folder": "文件夹", "folder": "文件夹", "including": "包括",
@@ -86,7 +98,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Notifications": "通知", "Shortcuts": "快捷键", "Keyboard Shortcuts": "键盘快捷键",
     "Global Shortcut": "全局快捷键", "Toggle Visibility": "切换显示/隐藏", "Proxy": "代理",
     "Update": "更新", "Updates": "更新", "Check for update": "检查更新",
-    "Models": "模型", "Customizations": "自定义", "Browser": "浏览器", "App": "应用", "Application": "应用",
+    "Models": "模型", "Customizations": "自定义", "Browser": "浏览器", "App": "应用", "Application": "应用", "Applications": "应用",
     "Projects": "项目", "Conversations": "对话", "Provide Feedback": "提供反馈",
     "Manage your plan, credentials, and general preferences.": "管理您的套餐、凭据和常规偏好设置。",
     "Enable Telemetry": "启用遥测",
@@ -109,16 +121,26 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Artifact Review Policy": "工件审核策略",
     "Specifies Agent's behavior when asking for review on artifacts, which are documents it creates to enable a richer conversation experience.": "指定智能体在请求审核工件时的行为，工件是其为提供更丰富对话体验而创建的文档。",
     "File Access Rules": "文件访问规则", "Configure allowed and denied paths for file reads and writes.": "配置允许和拒绝的文件读取和写入路径。",
-    "Network Access Rules": "网络访问规则", "Configure allowed and denied URLs for reading.": "配置允许和拒绝读取的 URL。",
-    "File Reads": "文件读取", "File Writes": "文件写入", "Read URLs": "读取 URL",
+    "File Reads": "文件读取", "File Writes": "文件写入", "Read URLs": "读取 URL", "Network Reads": "网络读取",
     "Inherits your General settings when working in this project.": "在此项目中工作时继承您的常规设置。",
     "Inherits your General settings when working in this project": "在此项目中工作时继承您的常规设置",
     "Allow/deny agent read access to specific files or directories.": "允许/拒绝智能体读取特定文件或目录。",
     "Allow/deny agent write access to specific files or directories.": "允许/拒绝智能体写入特定文件或目录。",
     "Allow/deny agent read access to specific URLs or domains.": "允许/拒绝智能体读取特定 URL 或域名。",
+    "Allow/deny agent read access to specific URLs.": "允许/拒绝智能体读取特定 URL。",
     "Allow/deny specific terminal commands.": "允许/拒绝特定的终端命令。",
     "Allow/deny specific commands outside the sandbox.": "允许/拒绝沙盒外的特定命令。",
+    "Allow/deny agent command execution outside the sandbox.": "允许/拒绝智能体在沙盒外执行命令。",
     "Allow": "允许", "allow": "允许", "Deny": "拒绝", "deny": "拒绝", "Ask": "询问", "ask": "询问", "Allow/deny": "允许/拒绝",
+    "e.g., npm test": "例如：npm test", "Enter tool name or server...": "输入工具名称或服务器...", "e.g., curl": "例如：curl",
+    "There are no customizations enabled.": "当前未启用任何自定义项。",
+    "Manage Antigravity app settings.": "管理 Antigravity 应用设置。",
+    "No MCP servers installed": "未安装任何 MCP 服务器", "Use Add MCP to browse the store, or add a custom server via the MCP config.": "使用“添加 MCP”浏览商店，或通过 MCP 配置添加自定义服务器。",
+    "Plugins": "插件", "Browse and enable plugins from the Build With Google catalog.": "浏览并启用来自 Build With Google 目录的插件。",
+    "Cloud CLI MCP Server provides tools to run gcloud and bq CLIcommands in a remote sandbox environment": "Cloud CLI MCP 服务器提供了在远程沙盒环境中运行 gcloud 和 bq CLI 命令的工具。",
+    "Browser Actuation Permissions": "浏览器操控权限", "Execute URLs": "执行 URL", "Allow/deny agent browser actuation access to specific URLs.": "允许/拒绝智能体对特定 URL 进行浏览器操控访问。",
+    "Media": "媒体", "Mentions": "提及", "Actions": "操作",
+    "Enable Remote Control": "启用远程控制", "Work with local agents from another device.": "从另一台设备与本地智能体协同工作。",
     "Enter Queues after the turn": "Enter 键：在当前轮次后排队",
     "Alt+Enter Sends immediately": "Alt+Enter 键：立即发送",
     "Alt+Enter On empty prompt, sends next in queue": "Alt+Enter 键：在输入为空时，发送队列中的下一条",
@@ -161,6 +183,11 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Execute URLs": "执行 URL",
     "Allow/deny agent browser actuation access to specific URLs.": "允许/拒绝智能体对特定 URL 进行浏览器操控访问。",
     "Allow/deny agent browser actuation access to specific URLs": "允许/拒绝智能体对特定 URL 进行浏览器操控访问",
+    "Allow write access to this path?": "允许写入此路径吗？", "Yes, allow this time": "是，仅本次允许",
+    "Yes, and always allow in this conversation": "是，在本次对话中始终允许",
+    "Yes, and always allow when not in a project": "是，在未分组项目中始终允许",
+    "Yes, and always allow": "是，始终允许", "No (tell the agent what to do instead)": "否 (告诉智能体接下来该做什么)",
+    "Skip": "跳过", "Submit": "提交",
 
     // Models & Usage Tab
     "Models & Usage": "模型与用量", "Manage your model quota and credits.": "管理您的模型配额和积分额度。",
@@ -314,13 +341,23 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Our servers are experiencing high traffic right now, please try again in a minute.": "我们的服务器当前负载较高，请稍后重试。",
     "Error ID:": "错误 ID：",
     "Agent terminated due to error": "智能体因错误而终止",
+    "Agent execution terminated due to error.": "智能体执行因错误而终止。",
+    "Agent execution terminated due to error": "智能体执行因错误而终止",
     "You can prompt the model to try again or start a new conversation if the error persists.": "您可以提示模型重试，或者如果错误仍然存在，可以开启新的对话。",
     "See our troubleshooting guide for more help.": "查看我们的排查指南以获取更多帮助。",
     "See our troubleshooting guide for more help": "查看我们的排查指南以获取更多帮助",
     "troubleshooting guide": "排查指南", "troubleshooting_guide": "排查指南",
     "See our": "查看我们的",
     "for more help.": "以获取更多帮助。", "for more help": "以获取更多帮助",
-    "Dismiss": "忽略", "Copy debug info": "复制调试信息", "Copy path": "复制路径", "Copy Path": "复制路径", "copy path": "复制路径"
+    "Dismiss": "忽略", "Copy debug info": "复制调试信息", "Copy path": "复制路径", "Copy Path": "复制路径", "copy path": "复制路径",
+
+    // Remote Control Feature & Prompts
+    "Try Remote Control": "尝试远程控制",
+    "Remote Control": "远程控制",
+    "Kick off work on your computer and continue working with your agents from your phone or another device. Turn on Remote Control in app settings.": "在电脑上启动工作，并可以通过手机或其他设备继续与智能体协同工作。请在应用设置中开启“远程控制”。",
+    "Kick off work on your computer and continue working with your agents from your phone or another device.": "在电脑上启动工作，并可以通过手机或其他设备继续与智能体协同工作。",
+    "Turn on Remote Control in app settings.": "请在应用设置中开启“远程控制”。",
+    "Turn on Remote Control in app settings": "请在应用设置中开启“远程控制”"
   };
 
   const coreWords = {
@@ -347,6 +384,9 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Plugins are packaged collections of skills and MCPs", "插件是技能和 MCP 的打包集合，用于帮助 "],
     ["work with Google developer products. You can always change your choices in Settings.", " 中的智能体与 Google 开发者产品协同工作。您可以随时在“设置”中更改您的选择。"],
     ["Provides a comprehensive guide", "提供 Google Antigravity (AGY) 的综合指南、快速参考和站点地图，包括 Antigravity CLI、Antigravity 2.0、IDE、Python SDK、斜杠命令、快捷键和自定义项。"],
+    ["How to render rich interactive HTML widgets inline in the chat or as standalone artifacts. Use this skill", "如何在对话中内联或作为独立工件渲染丰富的交互式 HTML 小部件。当您想要向用户显示图表、数据可视化或交互式控件时，请使用此技能。"],
+    ["Automatically migrate legacy workflows", "自动将旧版工作流迁移到技能目录。它会扫描现有工作流，并创建目标..."],
+    ["Guidelines for interacting with GitHub and request permissions", "关于与 GitHub 交互的指南，并在智能体环境中由于限制导致命令失败时向用户请求相应的权限。"],
     ["Comprehensive guide and reference for the Antigravity Customization System", "Antigravity 自定义系统的综合指南和参考。用于解释自定义项的工作原理、加载优先级、发现机制，并指导创建技能、规则、插件、钩子和 MCP 服务器。"],
     ["Skills providing tailored instructions for happy path", "提供 Dart 和 Flutter 开发主流程定制化指南的技能。"],
     ["Build and prototype location-aware applications with Google Maps Platform", "使用 Google Maps Platform 构建具有位置感知能力的应用并设计原型。"],
@@ -456,6 +496,10 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Allow/deny agent browser actuation access to specific URLs", "允许/拒绝智能体对特定 URL 进行浏览器操控访问。"],
 
     // Error and Fallback Links
+    ["Kick off work on your computer and continue working", "在电脑上启动工作，并可以通过手机或其他设备继续与智能体协同工作。请在应用设置中开启“远程控制”。"],
+    ["Turn on Remote Control in app settings", "请在应用设置中开启“远程控制”。"],
+    ["Try Remote Control", "尝试远程控制"],
+    ["Agent execution terminated due to error", "智能体执行因错误而终止。"],
     ["Confirming this undo action will make the following changes", "确认此撤销操作将做出以下更改："],
     ["Confirming this undo action will not make any code changes", "确认此撤销操作不会做出任何代码更改。"],
     ["Confirming this redo action will make the following changes", "确认此重做操作将做出以下更改："],
@@ -488,6 +532,15 @@ DOM_TRANSLATOR_INJECTION = r"""
     }
     if ((m = trimmed.match(/^Show (\d+) breakdowns?$/))) {
       return text.replace(trimmed, "显示 " + m[1] + " 项明细");
+    }
+    if ((m = trimmed.match(/^Explored (\d+) files? >$/))) {
+      return text.replace(trimmed, "已浏览 " + m[1] + " 个文件 >");
+    }
+    if ((m = trimmed.match(/^Editing (.+) \+(\d+) -(\d+)$/))) {
+      return text.replace(trimmed, "正在编辑 " + m[1] + " +" + m[2] + " -" + m[3]);
+    }
+    if (trimmed === "Waiting for user input") {
+      return text.replace(trimmed, "等待用户输入");
     }
     if ((m = trimmed.match(/^Learn more about (.+)$/))) {
       return text.replace(trimmed, "了解更多关于 " + (dictionary[m[1]] || m[1]) + " 的信息");
@@ -524,6 +577,9 @@ DOM_TRANSLATOR_INJECTION = r"""
     if ((m = trimmed.match(/^(\d+) files? changed$/))) {
       return text.replace(trimmed, m[1] + " 个文件已修改");
     }
+    if ((m = trimmed.match(/^Last (\d+) days?$/i))) return text.replace(trimmed, "最近 " + m[1] + " 天");
+    if ((m = trimmed.match(/^Last (\d+) hours?$/i))) return text.replace(trimmed, "最近 " + m[1] + " 小时");
+    if ((m = trimmed.match(/^Last (\d+) months?$/i))) return text.replace(trimmed, "最近 " + m[1] + " 个月");
     if ((m = trimmed.match(/^Version ([\d\.]+(-\w+)?)$/))) {
       return text.replace(trimmed, "版本 v" + m[1]);
     }
@@ -783,23 +839,30 @@ def replace_in_file(file_path, target, replacement):
 def apply_patch():
     print("==================================================================")
     print("                                                                ")
-    print("              Antigravity v2.8.1 桌面端 一键汉化补丁               ")
+    print("              Antigravity v2.11.0 桌面端 一键汉化补丁               ")
     print("Github 开源项目地址：https://github.com/MIMICTE/Antigravity-zh-CN")
     print("                                                                ")
     print("==================================================================")
     print("                                                                ")
     print("[执行] 正在为您关闭 Antigravity 程序...")
-    os.system("taskkill /F /IM Antigravity.exe >nul 2>&1")
+    if sys.platform == "win32":
+        os.system("taskkill /F /IM Antigravity.exe >nul 2>&1")
+    elif sys.platform == "darwin":
+        os.system("pkill -f Antigravity >/dev/null 2>&1")
 
     # 1. 确保 unpacked app 文件夹存在
     if not os.path.exists(UNPACKED_APP_DIR):
-        if not os.path.exists(ASAR_PATH):
+        source_asar = ASAR_PATH
+        if not os.path.exists(source_asar) and os.path.exists(ASAR_PATH + ".disabled"):
+            source_asar = ASAR_PATH + ".disabled"
+            
+        if not os.path.exists(source_asar):
             print(f"[错误] Cannot find app.asar at {ASAR_PATH} or {UNPACKED_APP_DIR}")
             return False
 
         print("[执行] 正在提取 app.asar 核心文件 (使用原生 Python 解析器)...")
         try:
-            extract_asar(ASAR_PATH, UNPACKED_APP_DIR)
+            extract_asar(source_asar, UNPACKED_APP_DIR)
             print("[完成] 文件提取完毕.")
         except Exception as e:
             print(f"[错误] 提取 app.asar 失败: {e}")
@@ -842,19 +905,31 @@ def apply_patch():
     print("                                                                ")
     print("==================================================================")
     
-    exe_path = os.path.join(APP_DIR, "Antigravity.exe")
-    if os.path.exists(exe_path):
-        DETACHED_PROCESS = 0x00000008
-        CREATE_NEW_PROCESS_GROUP = 0x00000200
-        subprocess.Popen(
-            [exe_path],
-            stdin=subprocess.DEVNULL,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            creationflags=DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP,
-            close_fds=True
-        )
+    if sys.platform == "win32":
+        exe_path = os.path.join(APP_DIR, "Antigravity.exe")
+        if os.path.exists(exe_path):
+            DETACHED_PROCESS = 0x00000008
+            CREATE_NEW_PROCESS_GROUP = 0x00000200
+            subprocess.Popen(
+                [exe_path],
+                stdin=subprocess.DEVNULL,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                creationflags=DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP,
+                close_fds=True
+            )
+    elif sys.platform == "darwin":
+        subprocess.Popen(["open", APP_DIR])
     return True
 
 if __name__ == "__main__":
-    apply_patch()
+    try:
+        apply_patch()
+    except KeyboardInterrupt:
+        print("\n\n[提示] 用户取消操作。")
+    except Exception as e:
+        print(f"\n[错误] 执行过程中出现异常: {e}")
+        print("\n如果问题持续，请访问 GitHub 提交 Issue:")
+        print("https://github.com/MIMICTE/Antigravity-zh-CN/issues")
+        input("\n按任意键退出...")
+        raise
