@@ -43,6 +43,12 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Open Antigravity IDE": "打开 Antigravity IDE", "Create Project": "创建项目", 
     "Command Palette": "命令面板", "Zoom In": "放大", "Zoom Out": "缩小", "Reset Zoom": "重置缩放",
     "Delete Conversation": "删除对话", "Are you sure you want to delete this conversation? This action cannot be undone.": "您确定要删除此对话吗？此操作无法撤销。",
+    "Are you sure you want to delete the project": "您确定要删除项目",
+    "Are you sure you want to delete the": "您确定要删除",
+    "Are you sure you want to delete": "您确定要删除",
+    "This will permanently delete": "这将永久删除包含在其中的",
+    "within it.": "", "within it": "",
+    "This action cannot be undone.": "此操作无法撤销。", "This action cannot be undone": "此操作无法撤销",
     "Confirm Undo": "确认撤销", "This undo action will not make any code changes.": "此撤销操作不会对代码做出任何更改。",
     "Confirm Redo": "确认重做", "This redo action will not make any code changes.": "此重做操作不会对代码做出任何更改。",
     "Undo changes up to this point": "撤销更改至此处", "Redo changes up to this point": "重做更改至此处",
@@ -396,6 +402,10 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["How to render rich interactive HTML widgets", "在对话中内联呈现丰富的交互式 HTML 小部件或作为独立工件。当您想向用户展示图表、数据可视化、交互式控件、教程指南或任何超出纯文本和 Markdown 的丰富视觉内容时，请使用此技能。"],
     ["Automatically migrate legacy workflows", "自动将旧版工作流（.agents/workflows/ 或 ~/.gemini/config/workflows/）迁移到技能（.agents/skills/ 或 ~/.gemini/config/skills/）。扫描现有工作流，创建目标技能目录并将内容提取到 SKILL.md 中。"],
     ["Guidelines for interacting with GitHub", "与 GitHub 交互的指南，并在命令由于智能体环境中的限制而失败时向用户请求权限。"],
+    ["Are you sure you want to delete the project", "您确定要删除项目 "],
+    ["Are you sure you want to delete the", "您确定要删除 "],
+    ["Are you sure you want to delete", "您确定要删除 "],
+    ["This will permanently delete", "这将永久删除包含在其中的 "],
 
     // Error and Fallback Links
     ["Confirming this undo action will make the following changes", "确认此撤销操作将做出以下更改："],
@@ -488,6 +498,16 @@ DOM_TRANSLATOR_INJECTION = r"""
     }
 
     // Special Multi-segment Matches
+    if (text.indexOf("Are you sure you want to delete") !== -1) {
+      text = text.replace(/Are you sure you want to delete the\s*(project|项目)?\s*/gi, "您确定要删除项目 ");
+      text = text.replace(/Are you sure you want to delete\s*/gi, "您确定要删除 ");
+    }
+    if (text.indexOf("This will permanently delete") !== -1) {
+      text = text.replace(/This will permanently delete\s*/gi, "这将永久删除包含在其中的 ");
+    }
+    if (text.indexOf("within it") !== -1) {
+      text = text.replace(/\s*within it\.?/gi, "");
+    }
     if (text.indexOf("Google Developer Knowledge") !== -1 || text.indexOf("official developer documentation and retrieve") !== -1) {
       return "Google Developer Knowledge MCP 服务器使 AI 驱动的开发工具能够搜索 Google 的官方开发者文档并检索相关内容...";
     }
