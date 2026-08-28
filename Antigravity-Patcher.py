@@ -49,6 +49,8 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Branch": "分支", "All changes since": "自此之后的所有更改",
     "Agent Edits": "智能体编辑", "Files modified by the agent in this conversation": "智能体在此对话中修改的文件",
     "Staged Changes": "暂存的更改", "Changes": "更改", "No changes to review": "没有需要审查的更改",
+    "Open File": "打开文件", "New Terminal": "新建终端",
+    "Models within this group:": "此分组内的模型：",
     "Folders": "文件夹", "folders": "文件夹", "Folder": "文件夹", "folder": "文件夹", "including": "包括",
     "Add Folder": "添加文件夹", "+ Add Folder": "+ 添加文件夹", "Add folder": "添加文件夹", "+ Add folder": "+ 添加文件夹",
     "Project Folders": "项目文件夹", "Project folders": "项目文件夹",
@@ -594,6 +596,9 @@ DOM_TRANSLATOR_INJECTION = r"""
     }
     if ((m = trimmed.match(/^All changes since (.+)$/i))) {
       return text.replace(trimmed, "自 " + m[1] + " 以来的所有更改");
+    }
+    if ((m = trimmed.match(/^Models within this group:\s*(.+)$/i))) {
+      return text.replace(trimmed, "此分组内的模型：" + m[1]);
     }
     if ((m = trimmed.match(/^Last (\d+) days?$/i))) return text.replace(trimmed, "最近 " + m[1] + " 天");
     if ((m = trimmed.match(/^Last (\d+) hours?$/i))) return text.replace(trimmed, "最近 " + m[1] + " 小时");
