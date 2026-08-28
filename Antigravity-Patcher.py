@@ -436,6 +436,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Interview me to align on a plan", "通过问答访谈来达成计划共识。"],
     ["Invoke a team of agents to autonomously tackle large projects", "调用多智能体团队自主处理大型项目。"],
     ["Reflect on recent successes or corrections to capture reusable skills or rules", "回顾近期的成功经验或纠正内容，以提炼可复用的技能或规则。"],
+    ["Ask a quick question without interrupting the main conversation", "在不打断主对话的情况下快速提问。"],
 
     ["Are you sure you want to delete the project", "您确定要删除项目 "],
     ["Are you sure you want to delete the", "您确定要删除 "],
