@@ -68,7 +68,9 @@ DOM_TRANSLATOR_INJECTION = r"""
     "No conversations yet": "暂无对话", "Open IDE": "打开 IDE", "Window": "窗口",
     "Review": "审阅", "Email": "电子邮箱", "Upgrade": "升级", "Not in Project": "未分组项目",
     "Ask anything, @ to mention, / for actions": "输入任何问题，使用 @ 提及，使用 / 执行操作",
-    "Status": "状态", "Sort Conversations": "对话排序", "Worktree": "工作区树",
+    "Status": "状态", "Sort Conversations": "对话排序", "Worktree": "工作区树", "Worktrees": "工作区树", "worktree": "工作区树",
+    "New Worktree": "新建工作区树", "New worktree": "新建工作区树",
+    "Local": "本地", "local": "本地", "Remote": "远程", "remote": "远程",
     "New Project": "新建项目", "Quick Start": "快速开始",
     "Good response": "好的回答", "Bad response": "差的回答",
 
@@ -324,6 +326,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "application": "应用", "applications": "应用", "remote": "远程", "control": "控制",
     "plugin": "插件", "plugins": "插件", "allow": "允许", "deny": "拒绝", "ask": "询问", "inherit": "继承", "inherits": "继承",
     "read": "读取", "reads": "读取", "write": "写入", "writes": "写入",
+    "local": "本地", "worktree": "工作区树", "worktrees": "工作区树",
     "global": "全局", "retry": "重试", "regenerate": "重新生成", "dismiss": "忽略"
   };
 
