@@ -27,7 +27,10 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Goals": "目标", "Tasks": "任务", "Artifacts": "工件", "Scratch": "草稿", "Chat": "对话",
     "Active": "进行中", "Inactive": "未激活", "Completed": "已完成", "Failed": "已失败",
     "History": "历史记录", "Settings": "设置", "System": "系统", "Network": "网络",
-    "Model": "模型", "Memory": "记忆", "Tools": "工具", "Agents": "智能体",
+    "Model": "模型", "Select Model": "选择模型", "select model": "选择模型",
+    "Your quota for this model is running low.": "您对此模型的配额即将用尽。",
+    "Your quota for this model is running low": "您对此模型的配额即将用尽",
+    "Memory": "记忆", "Tools": "工具", "Agents": "智能体",
     "Overview": "概览", "Logs": "日志", "Clear": "清除", "Save": "保存",
     "Cancel": "取消", "Submit": "提交", "Run": "运行", "Stop": "停止",
     "Edit": "编辑", "Delete": "删除", "Add": "添加", "Remove": "移除", "Download": "下载",
@@ -578,6 +581,9 @@ DOM_TRANSLATOR_INJECTION = r"""
     if ((m = trimmed.match(/^You have used some of your 5-hour limit, it will fully refresh in (.*)\.$/))) {
       let timeStr = m[1].replace(/days?/g, "天").replace(/hours?/g, "小时").replace(/minutes?/g, "分钟").replace(/,/g, "");
       return text.replace(trimmed, "您已使用部分五小时限额，它将在 " + timeStr + " 后完全重置。");
+    }
+    if ((m = trimmed.match(/^You need at least (\d+) AI Credits to send messages\. To continue using (.+?) now, purchase more AI Credits\. Your plan's baseline quota will refresh on (.+?)\.?$/i))) {
+      return text.replace(trimmed, "您至少需要 " + m[1] + " 个 AI 积分才能发送消息。若要立即继续使用 " + m[2] + "，请购买更多 AI 积分。您套餐的基础配额将于 " + m[3] + " 重置。");
     }
     if ((m = trimmed.match(/^Your plan's baseline quota will refresh on (.+?)\. To continue using this model now, enable AI Credit overages\.?$/i))) {
       return text.replace(trimmed, "您套餐的基础配额将于 " + m[1] + " 重置。若要立即继续使用此模型，请启用 AI 积分超额使用。");
