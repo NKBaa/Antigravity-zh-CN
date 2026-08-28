@@ -52,6 +52,8 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Agent Edits": "智能体编辑", "Files modified by the agent in this conversation": "智能体在此对话中修改的文件",
     "Staged Changes": "暂存的更改", "Changes": "更改", "No changes to review": "没有需要审查的更改",
     "Open File": "打开文件", "New Terminal": "新建终端",
+    "Copy Content": "复制内容", "Copy content": "复制内容",
+    "Show in File Explorer": "在文件资源管理器中显示", "Show in Finder": "在访达中显示", "Reveal in File Explorer": "在文件资源管理器中显示", "Reveal in Finder": "在访达中显示",
     "Models within this group:": "此分组内的模型：",
     "Folders": "文件夹", "folders": "文件夹", "Folder": "文件夹", "folder": "文件夹", "including": "包括",
     "Add Folder": "添加文件夹", "+ Add Folder": "+ 添加文件夹", "Add folder": "添加文件夹", "+ Add folder": "+ 添加文件夹",
