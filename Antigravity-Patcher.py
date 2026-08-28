@@ -93,6 +93,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Your Plan: Google AI Pro": "当前计划：Google AI Pro", "Your Plan:": "当前计划：",
     "You can upgrade to a Google AI Ultra plan to receive higher rate limits.": "您可以升级至 Google AI Ultra 套餐以获得更高的使用限额。",
     "By using this app, you agree to its ": "使用本应用即表示您同意其 ",
+    "By using this app, you agree to its": "使用本应用即表示您同意其",
     "Terms of Service": "服务条款",
     "Configure agent execution, queued message delivery, and permissions.": "配置智能体执行、排队消息发送以及权限。",
     "Execution": "执行", "Agent Settings": "智能体设置", "Agent Behavior": "智能体行为",
@@ -447,7 +448,8 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Agent terminated due to error", "智能体因错误而终止"],
     ["You can prompt the model to try again", "您可以提示模型重试，或者如果错误仍然存在，可以开启新的对话。"],
     ["for more help", " 以获取更多帮助。"],
-    ["See our", "查看我们的 "]
+    ["See our", "查看我们的 "],
+    ["By using this app, you agree to its", "使用本应用即表示您同意其"]
   ];
 
   function translateText(text) {
