@@ -73,6 +73,8 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Local": "本地", "local": "本地", "Remote": "远程", "remote": "远程",
     "New Project": "新建项目", "Quick Start": "快速开始",
     "Good response": "好的回答", "Bad response": "差的回答",
+    "Media": "媒体", "Mentions": "提及", "Actions": "操作",
+    "Browser": "浏览器",
 
     // General Settings Page
     "General": "常规", "Appearance": "外观", "Theme": "主题", "Light": "浅色", "Dark": "深色",
