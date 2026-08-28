@@ -154,6 +154,10 @@ DOM_TRANSLATOR_INJECTION = r"""
     "MCP Tools": "MCP 工具", "Configure external tools via Model Context Protocol.": "通过模型上下文协议配置外部工具。",
     "External tools the agent can call via Model Context Protocol.": "智能体可通过模型上下文协议调用的外部工具。",
     "External tools the agent can call via Model Context Protocol": "智能体可通过模型上下文协议调用的外部工具",
+    "Browser Actuation Permissions": "浏览器操控权限",
+    "Execute URLs": "执行 URL",
+    "Allow/deny agent browser actuation access to specific URLs.": "允许/拒绝智能体对特定 URL 进行浏览器操控访问。",
+    "Allow/deny agent browser actuation access to specific URLs": "允许/拒绝智能体对特定 URL 进行浏览器操控访问",
 
     // Models & Usage Tab
     "Models & Usage": "模型与用量", "Manage your model quota and credits.": "管理您的模型配额和积分额度。",
@@ -436,6 +440,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Allow/deny agent command execution outside the sandbox", "允许/拒绝智能体在沙盒外执行命令。"],
     ["External tools the agent can call via Model Context Protocol", "智能体可通过模型上下文协议调用的外部工具。"],
     ["Within each group, models share a weekly limit and a 5-hour limit", "在每个分组内，各模型共享每周限额和 5 小时限额。配额按 Token 费用比例消耗，因此使用更短的任务或更具成本效益的模型可以让限额持续更久。5 小时限额用于平滑聚合需求，以在所有用户之间公平分配全局容量，而您的每周限额则直接与您的个人套餐级别挂钩。"],
+    ["Allow/deny agent browser actuation access to specific URLs", "允许/拒绝智能体对特定 URL 进行浏览器操控访问。"],
 
     // Error and Fallback Links
     ["Confirming this undo action will make the following changes", "确认此撤销操作将做出以下更改："],
