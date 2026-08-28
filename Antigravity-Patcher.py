@@ -45,6 +45,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Files Changed": "已修改文件", "No subagents": "无子智能体", "No file changes": "无文件修改",
     "No artifacts generated": "未生成工件", "Uploads": "上传项", "Background Tasks": "后台任务",
     "No background tasks": "无后台任务", "Terminals": "终端", "No active terminals": "无活动终端",
+    "Standalone Terminals": "独立终端",
     "Uncommitted": "未提交", "Staged index changes and working tree changes": "暂存区更改及工作区更改",
     "Branch": "分支", "All changes since": "自此之后的所有更改",
     "Agent Edits": "智能体编辑", "Files modified by the agent in this conversation": "智能体在此对话中修改的文件",
