@@ -566,6 +566,14 @@ DOM_TRANSLATOR_INJECTION = r"""
       let timeStr = m[1].replace(/days?/g, "天").replace(/hours?/g, "小时").replace(/minutes?/g, "分钟").replace(/,/g, "");
       return text.replace(trimmed, "您已使用部分每周限额，它将在 " + timeStr + " 后完全重置。");
     }
+    if ((m = trimmed.match(/^You have hit your weekly limit, it refreshes in (.+?)\. If on a supported paid plan, you can use AI credits in the interim or upgrade to a higher tier\.?$/i))) {
+      let timeStr = m[1].replace(/days?/g, "天").replace(/hours?/g, "小时").replace(/minutes?/g, "分钟").replace(/,/g, "");
+      return text.replace(trimmed, "您已达到每周限额，将在 " + timeStr + " 后重置。如果您使用的是受支持的付费套餐，可以在此期间使用 AI 积分或升级到更高级别的套餐。");
+    }
+    if ((m = trimmed.match(/^You have hit your weekly limit, the 5-hour limit does not currently apply\. Your weekly limit will fully refresh in (.+?)\.?$/i))) {
+      let timeStr = m[1].replace(/days?/g, "天").replace(/hours?/g, "小时").replace(/minutes?/g, "分钟").replace(/,/g, "");
+      return text.replace(trimmed, "您已达到每周限额，当前不适用 5 小时限额。您的每周限额将在 " + timeStr + " 后完全重置。");
+    }
     if ((m = trimmed.match(/^You have used some of your 5-hour limit, it will fully refresh in (.*)\.$/))) {
       let timeStr = m[1].replace(/days?/g, "天").replace(/hours?/g, "小时").replace(/minutes?/g, "分钟").replace(/,/g, "");
       return text.replace(trimmed, "您已使用部分五小时限额，它将在 " + timeStr + " 后完全重置。");
