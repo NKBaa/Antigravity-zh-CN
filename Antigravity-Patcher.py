@@ -162,6 +162,8 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Available AI Credits:": "可用 AI 积分：",
     "Gemini Models": "Gemini 模型", "Claude and GPT models": "Claude 和 GPT 模型",
     "Limited time": "限时", "Low": "低", "High": "高", "View Usage": "查看用量",
+    "Model Quota": "模型配额",
+    "Within each group, models share a weekly limit and a 5-hour limit. Quota is consumed proportionally to the cost of the tokens. Thus, limits will last longer with shorter tasks or using more cost-effective models. The 5-hour limit smooths out aggregate demand to fairly distribute global capacity across all users, while your weekly limit is tied directly to your individual tier.": "在每个分组内，各模型共享每周限额和 5 小时限额。配额按 Token 费用比例消耗，因此使用更短的任务或更具成本效益的模型可以让限额持续更久。5 小时限额用于平滑聚合需求，以在所有用户之间公平分配全局容量，而您的每周限额则直接与您的个人套餐级别挂钩。",
 
     // Customizations & Plugins
     "Configure default behaviors, skills, and MCP servers.": "配置默认行为、技能和 MCP 服务器。",
@@ -432,6 +434,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Allow/deny specific commands outside the sandbox", "允许/拒绝沙盒外的特定命令。"],
     ["Allow/deny agent command execution outside the sandbox", "允许/拒绝智能体在沙盒外执行命令。"],
     ["External tools the agent can call via Model Context Protocol", "智能体可通过模型上下文协议调用的外部工具。"],
+    ["Within each group, models share a weekly limit and a 5-hour limit", "在每个分组内，各模型共享每周限额和 5 小时限额。配额按 Token 费用比例消耗，因此使用更短的任务或更具成本效益的模型可以让限额持续更久。5 小时限额用于平滑聚合需求，以在所有用户之间公平分配全局容量，而您的每周限额则直接与您的个人套餐级别挂钩。"],
 
     // Error and Fallback Links
     ["Confirming this undo action will make the following changes", "确认此撤销操作将做出以下更改："],
