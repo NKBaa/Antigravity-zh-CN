@@ -16,7 +16,7 @@ An open-source Chinese localization patch for Google Antigravity Desktop
 
 ## 📖 Project Overview
 
-**Antigravity v2.8.1 Chinese Localization Patch** - Provides complete Chinese interface support for Google Antigravity desktop application.
+**Antigravity v2.11.0 Chinese Localization Patch** - Provides complete Chinese interface support for Google Antigravity desktop application.
 
 This project uses innovative **Web Injection and Native ASAR Unpacking Technology** to achieve perfect localization without compromising the original software's security and stability.
 
@@ -26,62 +26,34 @@ This project uses innovative **Web Injection and Native ASAR Unpacking Technolog
 - 🎯 **Smart Text Matching** - Uses low-level `indexOf` fragmentation reconstruction and CSS pseudo-class polymorphic matching to bypass Webpack code splitting issues
 - ⚡ **One-Click Deployment** - Automatically handles process cleanup and software restart for a seamless "press Enter → enjoy Chinese" experience
 - 🛡️ **Clean & Reversible** - Complete removal of localization with restore script, ensuring "lossless rollback" to official English version at any time
-- 🧭 **Dynamic Path Resolution** - Uses `LOCALAPPDATA` dynamic addressing for universal Windows compatibility regardless of installation location
+- 🧭 **Cross-Platform Compatibility** - Automatically detects OS environment, natively supporting path resolution and process management on both Windows and macOS
 
 ## 📦 Download & Installation
 
-### Option 1: Standalone EXE Version ⭐ Recommended for Most Users
+### Option 1: Standalone Version (Windows / macOS) ⭐ Recommended for Most Users
 
-**Download:** [Antigravity-zh-CN-v2.8.1-Windows-x64-exe.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
+**Download:** [Download your OS version from Releases](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest) (Supports Windows x64, macOS Intel/Apple Silicon)
 
 **Features:**
 - ✅ Ready to use, **no Python environment required**
-- ✅ Includes official Antigravity HD icons for native look and feel
-- ✅ Double-click to run patch or restore directly
+- ✅ Native experience, one-click execution with automatic app restart
 
-**How to use:**
-1. Download and extract the ZIP file
-2. Double-click `Antigravity-Patcher.exe` to apply the patch
-3. To revert, double-click `Restore.exe` to restore to the official English version
+**【For Windows Users】**
+1. Download `Windows-x64-exe.zip` and extract
+2. Double-click `Antigravity-Patcher.exe` to apply the patch (Use `Restore.exe` to revert)
 
----
-
-### Option 2: Python Script Version ⭐ Recommended with Python Installed
-
-**Download:** [Antigravity-zh-CN-v2.8.1-Windows-x64.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
-
-**Features:**
-- ✅ Open source and transparent, auditable code
-- ✅ Tiny file size (~60 KB)
-- ✅ Never flagged by antivirus software
-
-**Prerequisites:**
-
-Install [Python 3.8 or higher](https://www.python.org/downloads/)
-- Make sure to check **"Add Python to PATH"** during installation
-
-**How to use:**
-1. Download and extract the ZIP file
-2. Double-click `Antigravity-Patcher.py` to apply the patch
-
-The script will automatically:
-- Close Antigravity process
-- Unpack and inject localization code
-- Restart the software with Chinese interface
-
-3. Double-click `Restore.py` to restore to the official English version
-
-> 💡 **Tip**: If double-clicking doesn't work, try:
-> - Right-click → "Open with" → "Python"
-> - Or open command line in the project directory and run:
->   ```bash
->   python Antigravity-Patcher.py  # Apply patch
->   python Restore.py              # Restore
->   ```
+**【For macOS Users】**
+1. Download the corresponding macOS archive (`arm64` for M-series Apple Silicon, `x86_64` for Intel) and extract
+2. Open Terminal, navigate to the extracted folder, grant execution permissions and run:
+   ```bash
+   chmod +x Antigravity-Patcher-macOS-*
+   ./Antigravity-Patcher-macOS-*
+   ```
+> 🍎 **macOS Note**: If blocked by Gatekeeper ("cannot be opened because the developer cannot be verified"), go to "System Settings -> Privacy & Security", scroll down and click "Open Anyway". Alternatively, run `xattr -cr Antigravity-Patcher-macOS-*` in Terminal to clear attributes.
 
 ---
 
-### Option 3: Install from Source ⭐ Recommended for Developers
+### Option 2: Install from Source ⭐ Recommended for Developers
 
 **Clone the repository:**
 ```bash
@@ -110,8 +82,8 @@ Pure Python implementation of ASAR file format parser with zero external depende
 ## ⚠️ Known Limitations
 
 - **Thought Process in English** - Due to AI model's streaming output architecture, the agent's backend thinking logs (`Thought` process) cannot be localized, but all final responses and frontend UI elements are 100% localized
-- **Windows Only** - Currently only supports Windows platform; macOS and Linux require separate adaptations
-- **Version Specific** - Deeply optimized for Antigravity v2.8.1 with robust compatibility across versions
+- **Platform Support** - Fully supports Windows and macOS (Intel & Apple Silicon). Linux is currently not supported
+- **Version Specific** - Deeply optimized for Antigravity v2.11.0 with robust compatibility across versions
 
 ## 📸 Screenshots
 
@@ -127,7 +99,8 @@ Pure Python implementation of ASAR file format parser with zero external depende
 - ✅ Sidebar menu (New conversation, History, Scheduled tasks, Projects)
 - ✅ Top navigation bar (File, Audio, Window)
 - ✅ Input placeholder text and model selector
-- ✅ Settings page with all options and descriptions
+- ✅ All options and descriptions in Settings page
+- ✅ Underlying terminal permission request prompts and dynamic status text
 
 > 💡 Tip: To see the actual result, simply double-click `Antigravity-Patcher.exe` or `Antigravity-Patcher.py` to experience the complete Chinese interface!
 
@@ -149,23 +122,32 @@ This project is completely open-source and secure:
 3. **DOM Monitoring** - Use `MutationObserver` to watch page changes
 4. **Text Replacement** - Dictionary-based English to Chinese text replacement
 
-### About the .exe Version
+### About the Standalone Executables (Windows .exe / macOS binaries)
 
-- .exe files are packaged using [PyInstaller](https://pyinstaller.org/) open-source tool
+- Packaged using [PyInstaller](https://pyinstaller.org/) open-source tool
 - Contains complete Python runtime environment (hence file size ~8 MB)
-- May be flagged by some antivirus software, which is a known PyInstaller issue
-- If you have security concerns, use the Python script version (completely transparent code)
+- May be flagged by some antivirus software on Windows, which is a known PyInstaller issue
+- macOS may show "cannot be opened because the developer cannot be verified" due to lack of paid Apple Developer signature
+- If you have security concerns, use the "Install from Source" method (completely transparent code)
 
 No reverse engineering or cracking involved.
 
 ## ❓ FAQ
 
 <details>
-<summary><b>Q: What's the difference between Python script and .exe versions?</b></summary>
+<summary><b>Q: macOS version shows "cannot be opened because the developer cannot be verified"?</b></summary>
+
+A: This is triggered by macOS Gatekeeper (because this open-source tool is not signed with a paid Apple Developer certificate). To fix this:
+1. Option 1: Go to "System Settings -> Privacy & Security", scroll down and click "Open Anyway".
+2. Option 2: Run `xattr -cr /path/to/downloaded/file` in Terminal to clear quarantine attributes.
+</details>
+
+<details>
+<summary><b>Q: What's the difference between Python script and standalone versions?</b></summary>
 
 A: 
 - **Python script version**: Requires Python environment, small size, transparent code
-- **.exe version**: No Python needed, ready to use, but larger file size and may trigger false positives
+- **Standalone version**: No Python needed, ready to use, but larger file size and may trigger false positives
 
 Both versions have identical functionality. Choose based on your needs.
 </details>

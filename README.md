@@ -16,7 +16,7 @@
 
 ## 📖 项目简介
 
-**Antigravity v2.8.1 一键汉化补丁** - 为 Google Antigravity 桌面端提供完整的中文界面支持。
+**Antigravity v2.11.0 一键汉化补丁** - 为 Google Antigravity 桌面端提供完整的中文界面支持。
 
 本项目采用独创的 **Web 注入与原生 ASAR 解包技术**，在完全不破坏原版软件安全性和稳定性的前提下，实现了目前技术上限内的最完美汉化。
 
@@ -26,62 +26,34 @@
 - 🎯 **智能文本匹配** - 采用底层 `indexOf` 碎片化重组与 CSS 伪类多态匹配策略，完美绕过 Webpack 代码分割导致的汉化失效问题
 - ⚡ **一键部署** - 执行补丁后自动清理进程并重启软件，实现"敲下回车 → 享受中文"的无缝体验
 - 🛡️ **纯净可逆** - 还原脚本可彻底抹除所有汉化残留，确保随时能"无损回滚"至纯血官方英文版
-- 🧭 **全动态路径寻址** - 采用 `LOCALAPPDATA` 动态寻址，支持任意 Windows 系统配置
+- 🧭 **全动态跨平台寻址** - 智能识别系统架构，原生支持 Windows 及 macOS 环境下的路径寻址与进程管理
 
 ## 📦 下载与安装
 
-### 方式一：EXE 独立免安装版 ⭐ 推荐普通用户
+### 方式一：独立免安装版 (Windows / macOS) ⭐ 推荐普通用户
 
-**下载：** [Antigravity-zh-CN-v2.8.1-Windows-x64-exe.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
+**下载：** [前往 Release 下载对应系统版本](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest) (支持 Windows x64, macOS Intel/M芯片)
 
 **特点：**
 - ✅ 开箱即用，**无需安装 Python** 环境
-- ✅ 内置官方 Antigravity 高清图标，原生软件级体验
-- ✅ 双击直接运行即可完成汉化或还原
+- ✅ 原生级体验，一键执行，自动识别路径并重启
 
-**使用方法：**
-1. 下载并解压 ZIP 文件
-2. 双击运行 `Antigravity-Patcher.exe` 开始汉化
-3. 如需还原，双击运行 `Restore.exe` 即可一键恢复为官方英文版
+**【Windows 用户使用方法】**
+1. 下载 `Windows-x64-exe.zip` 并解压
+2. 双击运行 `Antigravity-Patcher.exe` 开始汉化 (还原请双击 `Restore.exe`)
 
----
-
-### 方式二：Python 脚本版 ⭐ 推荐已有 Python 环境用户
-
-**下载：** [Antigravity-zh-CN-v2.8.1-Windows-x64.zip](https://github.com/MIMICTE/Antigravity-zh-CN/releases/latest)
-
-**特点：**
-- ✅ 开源透明，可随时审查代码
-- ✅ 文件极其小巧（仅约 60 KB）
-- ✅ 不会被任何杀毒软件误报
-
-**前置要求：**
-
-确保已安装 [Python 3.8 及以上版本](https://www.python.org/downloads/)
-- 安装时请务必勾选 **"Add Python to PATH"** 选项
-
-**使用方法：**
-1. 下载并解压 ZIP 文件
-2. 双击运行 `Antigravity-Patcher.py` 开始汉化
-
-脚本会自动：
-- 关闭 Antigravity 进程
-- 解包并注入汉化代码  
-- 重启软件并应用中文界面
-
-3. 双击运行 `Restore.py` 一键恢复为官方英文版
-
-> 💡 **提示**：如果双击无法运行 Python 脚本，请尝试：
-> - 右键选择 "打开方式" → "Python"
-> - 或在项目目录打开命令行执行：
->   ```bash
->   python Antigravity-Patcher.py  # 汉化
->   python Restore.py              # 还原
->   ```
+**【macOS 用户使用方法】**
+1. 下载对应的 macOS 压缩包（`arm64`为M系列芯片，`x86_64`为Intel芯片）并解压
+2. 打开终端 (Terminal)，进入解压目录，赋予执行权限并运行：
+   ```bash
+   chmod +x Antigravity-Patcher-macOS-*
+   ./Antigravity-Patcher-macOS-*
+   ```
+> 🍎 **Mac 用户注意**：若系统提示“无法打开，因为无法验证开发者”，请前往「系统设置 -> 隐私与安全性」，向下滑动并点击「仍要打开」。或者在终端执行 `xattr -cr Antigravity-Patcher-macOS-*` 即可解除限制。
 
 ---
 
-### 方式三：从源码安装 ⭐ 推荐开发者
+### 方式二：从源码安装 ⭐ 推荐开发者
 
 **克隆仓库：**
 ```bash
@@ -110,8 +82,8 @@ python Antigravity-Patcher.py
 ## ⚠️ 已知限制
 
 - **思考日志为英文** - 受限于大模型的即时流式输出架构，智能体后台生成的思考日志（`Thought` 过程）无法汉化，但所有最终回复与前端界面均已 100% 汉化
-- **仅支持 Windows** - 目前仅适配 Windows 平台，macOS 和 Linux 需要单独适配
-- **版本依赖** - 针对 Antigravity v2.8.1 深度优化，其他版本亦具备高度兼容性
+- **多平台支持** - 目前已完美适配 Windows 以及 macOS (Intel & M芯片) 平台，Linux 暂不支持
+- **版本依赖** - 针对 Antigravity v2.11.0 深度优化，其他版本亦具备高度兼容性
 
 ## 📸 效果展示
 
@@ -128,6 +100,7 @@ python Antigravity-Patcher.py
 - ✅ 顶部导航栏（文件、音频、窗口）
 - ✅ 输入框提示文本和模型选择器
 - ✅ 设置页面所有选项和说明
+- ✅ 底层终端操作权限请求弹窗及动态状态提示
 
 > 💡 提示：要查看实际效果，双击运行 `Antigravity-Patcher.exe` 或 `Antigravity-Patcher.py` 即可体验完整的中文界面！
 
@@ -149,23 +122,32 @@ python Antigravity-Patcher.py
 3. **DOM 监听** - 使用 `MutationObserver` 监听页面变化
 4. **文本替换** - 通过字典匹配将英文替换为中文
 
-### 关于 .exe 版本
+### 关于免安装可执行版 (Windows .exe / macOS 二进制文件)
 
-- .exe 文件使用 [PyInstaller](https://pyinstaller.org/) 开源工具打包
+- 该版本使用 [PyInstaller](https://pyinstaller.org/) 开源工具打包
 - 包含完整的 Python 运行时环境（因此文件较大约 8 MB）
-- 可能被部分杀毒软件误报，这是 PyInstaller 的已知问题
-- 如有安全顾虑，推荐使用 Python 脚本版（代码完全透明）
+- Windows 下可能被部分杀毒软件误报，这是 PyInstaller 的已知问题
+- macOS 下可能被系统提示“无法验证开发者”，这是因为缺少苹果付费签名
+- 如有安全顾虑，推荐使用“从源码安装”的方式（代码完全透明）
 
 整个过程不涉及任何逆向工程或破解行为。
 
 ## ❓ 常见问题
 
 <details>
-<summary><b>Q: Python 脚本版和 .exe 版本有什么区别？</b></summary>
+<summary><b>Q: Mac 版本运行提示“无法打开，因为无法验证开发者”怎么办？</b></summary>
+
+A: 这是由于 Mac 的 Gatekeeper 门禁机制引起的（由于本项目是开源免费工具，未购买苹果开发者签名）。解决方法：
+1. 方式一：前往「系统设置」 -> 「隐私与安全性」，向下滑动并点击「仍要打开」。
+2. 方式二：在终端执行 `xattr -cr 你下载的程序路径` 即可一键解除限制。
+</details>
+
+<details>
+<summary><b>Q: Python 脚本版和免安装版本有什么区别？</b></summary>
 
 A: 
 - **Python 脚本版**：需要 Python 环境，文件小，代码透明
-- **.exe 版本**：无需 Python，开箱即用，但文件较大且可能误报
+- **免安装版本**：无需 Python，开箱即用，但文件较大且可能被杀毒软件误报
 
 两者功能完全相同，推荐根据自己的需求选择。
 </details>
