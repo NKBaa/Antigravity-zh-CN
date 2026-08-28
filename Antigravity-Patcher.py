@@ -320,7 +320,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "troubleshooting guide": "排查指南", "troubleshooting_guide": "排查指南",
     "See our": "查看我们的",
     "for more help.": "以获取更多帮助。", "for more help": "以获取更多帮助",
-    "Dismiss": "忽略", "Copy debug info": "复制调试信息"
+    "Dismiss": "忽略", "Copy debug info": "复制调试信息", "Copy path": "复制路径", "Copy Path": "复制路径", "copy path": "复制路径"
   };
 
   const coreWords = {
@@ -336,7 +336,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "application": "应用", "applications": "应用", "remote": "远程", "control": "控制",
     "plugin": "插件", "plugins": "插件", "allow": "允许", "deny": "拒绝", "ask": "询问", "inherit": "继承", "inherits": "继承",
     "read": "读取", "reads": "读取", "write": "写入", "writes": "写入",
-    "local": "本地", "worktree": "工作区树", "worktrees": "工作区树",
+    "local": "本地", "worktree": "工作区树", "worktrees": "工作区树", "path": "路径", "paths": "路径",
     "global": "全局", "retry": "重试", "regenerate": "重新生成", "dismiss": "忽略"
   };
 
