@@ -104,6 +104,15 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Specifies Agent's behavior when asking for review on artifacts, which are documents it creates to enable a richer conversation experience.": "指定智能体在请求审核工件时的行为，工件是其为提供更丰富对话体验而创建的文档。",
     "File Access Rules": "文件访问规则", "Configure allowed and denied paths for file reads and writes.": "配置允许和拒绝的文件读取和写入路径。",
     "Network Access Rules": "网络访问规则", "Configure allowed and denied URLs for reading.": "配置允许和拒绝读取的 URL。",
+    "File Reads": "文件读取", "File Writes": "文件写入", "Read URLs": "读取 URL",
+    "Inherits your General settings when working in this project.": "在此项目中工作时继承您的常规设置。",
+    "Inherits your General settings when working in this project": "在此项目中工作时继承您的常规设置",
+    "Allow/deny agent read access to specific files or directories.": "允许/拒绝智能体读取特定文件或目录。",
+    "Allow/deny agent write access to specific files or directories.": "允许/拒绝智能体写入特定文件或目录。",
+    "Allow/deny agent read access to specific URLs or domains.": "允许/拒绝智能体读取特定 URL 或域名。",
+    "Allow/deny specific terminal commands.": "允许/拒绝特定的终端命令。",
+    "Allow/deny specific commands outside the sandbox.": "允许/拒绝沙盒外的特定命令。",
+    "Allow": "允许", "Deny": "拒绝", "Allow/deny": "允许/拒绝",
     "Enter Queues after the turn": "Enter 键：在当前轮次后排队",
     "Alt+Enter Sends immediately": "Alt+Enter 键：立即发送",
     "Alt+Enter On empty prompt, sends next in queue": "Alt+Enter 键：在输入为空时，发送队列中的下一条",
@@ -309,7 +318,8 @@ DOM_TRANSLATOR_INJECTION = r"""
     "error": "错误", "warning": "警告", "info": "信息", "success": "成功", "failed": "失败", "pending": "等待中", "running": "运行中",
     "yes": "是", "no": "否", "true": "真", "false": "假", "on": "开", "off": "关", "enable": "启用", "disable": "禁用",
     "application": "应用", "applications": "应用", "remote": "远程", "control": "控制",
-    "plugin": "插件", "plugins": "插件",
+    "plugin": "插件", "plugins": "插件", "allow": "允许", "deny": "拒绝", "inherit": "继承", "inherits": "继承",
+    "read": "读取", "reads": "读取", "write": "写入", "writes": "写入",
     "global": "全局", "retry": "重试", "regenerate": "重新生成", "dismiss": "忽略"
   };
 
@@ -406,6 +416,13 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Are you sure you want to delete the", "您确定要删除 "],
     ["Are you sure you want to delete", "您确定要删除 "],
     ["This will permanently delete", "这将永久删除包含在其中的 "],
+    ["Inherits your General settings when working in this project", "在此项目中工作时继承您的常规设置。"],
+    ["Inherits your general settings when working in this project", "在此项目中工作时继承您的常规设置。"],
+    ["Allow/deny agent read access to specific files or directories", "允许/拒绝智能体读取特定文件或目录。"],
+    ["Allow/deny agent write access to specific files or directories", "允许/拒绝智能体写入特定文件或目录。"],
+    ["Allow/deny agent read access to specific URLs or domains", "允许/拒绝智能体读取特定 URL 或域名。"],
+    ["Allow/deny specific terminal commands", "允许/拒绝特定的终端命令。"],
+    ["Allow/deny specific commands outside the sandbox", "允许/拒绝沙盒外的特定命令。"],
 
     // Error and Fallback Links
     ["Confirming this undo action will make the following changes", "确认此撤销操作将做出以下更改："],
