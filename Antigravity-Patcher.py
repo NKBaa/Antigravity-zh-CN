@@ -58,6 +58,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Confirming this redo action will not make any code changes.": "确认此重做操作不会做出任何代码更改。",
     "Undo changes": "撤销更改", "Redo changes": "重做更改",
     "Record Audio": "录制音频", "Record Audio Ctrl+M": "录制音频 Ctrl+M",
+    "Stop Recording": "停止录制", "Stop Recording Ctrl+M": "停止录制 Ctrl+M",
     "Send message": "发送消息", "Send message Enter": "发送消息 Enter",
     "Getting started with a Project": "开始使用项目",
     "Now that you've created a project, configure your project's agent settings or start a conversation.": "现在您已经创建了一个项目，接下来请配置该项目的智能体设置，或者直接开始对话。",
