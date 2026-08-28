@@ -428,6 +428,15 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["How to render rich interactive HTML widgets", "在对话中内联呈现丰富的交互式 HTML 小部件或作为独立工件。当您想向用户展示图表、数据可视化、交互式控件、教程指南或任何超出纯文本和 Markdown 的丰富视觉内容时，请使用此技能。"],
     ["Automatically migrate legacy workflows", "自动将旧版工作流（.agents/workflows/ 或 ~/.gemini/config/workflows/）迁移到技能（.agents/skills/ 或 ~/.gemini/config/skills/）。扫描现有工作流，创建目标技能目录并将内容提取到 SKILL.md 中。"],
     ["Guidelines for interacting with GitHub", "与 GitHub 交互的指南，并在命令由于智能体环境中的限制而失败时向用户请求权限。"],
+
+    // Slash Command descriptions
+    ["Run until the specified goal is completely finished", "持续运行直到指定目标完全完成。"],
+    ["Run an instruction on a recurring schedule or as a one-time timer", "按定期计划或作为一次性计时器运行指令。"],
+    ["Invoke a browser agent for web tasks", "调用浏览器智能体执行网络任务。"],
+    ["Interview me to align on a plan", "通过问答访谈来达成计划共识。"],
+    ["Invoke a team of agents to autonomously tackle large projects", "调用多智能体团队自主处理大型项目。"],
+    ["Reflect on recent successes or corrections to capture reusable skills or rules", "回顾近期的成功经验或纠正内容，以提炼可复用的技能或规则。"],
+
     ["Are you sure you want to delete the project", "您确定要删除项目 "],
     ["Are you sure you want to delete the", "您确定要删除 "],
     ["Are you sure you want to delete", "您确定要删除 "],
