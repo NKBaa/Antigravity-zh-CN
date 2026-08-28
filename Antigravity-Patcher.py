@@ -42,6 +42,13 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Today": "今天", "Yesterday": "昨天", "This week": "本周", "This month": "本月", "All time": "全部时间",
     "Project": "项目", "project": "项目", "projects": "项目", "Conversation": "对话", "conversation": "对话",
     "Workspace": "工作区", "workspace": "工作区", "Minimize": "最小化", "Maximize": "最大化", "Back": "返回",
+    "Files Changed": "已修改文件", "No subagents": "无子智能体", "No file changes": "无文件修改",
+    "No artifacts generated": "未生成工件", "Uploads": "上传项", "Background Tasks": "后台任务",
+    "No background tasks": "无后台任务", "Terminals": "终端", "No active terminals": "无活动终端",
+    "Uncommitted": "未提交", "Staged index changes and working tree changes": "暂存区更改及工作区更改",
+    "Branch": "分支", "All changes since": "自此之后的所有更改",
+    "Agent Edits": "智能体编辑", "Files modified by the agent in this conversation": "智能体在此对话中修改的文件",
+    "Staged Changes": "暂存的更改", "Changes": "更改", "No changes to review": "没有需要审查的更改",
     "Folders": "文件夹", "folders": "文件夹", "Folder": "文件夹", "folder": "文件夹", "including": "包括",
     "Add Folder": "添加文件夹", "+ Add Folder": "+ 添加文件夹", "Add folder": "添加文件夹", "+ Add folder": "+ 添加文件夹",
     "Project Folders": "项目文件夹", "Project folders": "项目文件夹",
@@ -374,6 +381,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "plugin": "插件", "plugins": "插件", "allow": "允许", "deny": "拒绝", "ask": "询问", "inherit": "继承", "inherits": "继承",
     "read": "读取", "reads": "读取", "write": "写入", "writes": "写入",
     "local": "本地", "worktree": "工作区树", "worktrees": "工作区树", "path": "路径", "paths": "路径",
+    "uncommitted": "未提交", "branch": "分支", "branches": "分支", "uploads": "上传项",
     "global": "全局", "retry": "重试", "regenerate": "重新生成", "dismiss": "忽略"
   };
 
@@ -576,6 +584,16 @@ DOM_TRANSLATOR_INJECTION = r"""
     }
     if ((m = trimmed.match(/^(\d+) files? changed$/))) {
       return text.replace(trimmed, m[1] + " 个文件已修改");
+    }
+    if ((m = trimmed.match(/^See all \((\d+)\)$/i))) {
+      return text.replace(trimmed, "查看全部 (" + m[1] + ")");
+    }
+    if ((m = trimmed.match(/^Media \((.+)\)$/i))) {
+      let t = m[1].replace(/Today/g, "今天").replace(/Yesterday/g, "昨天");
+      return text.replace(trimmed, "媒体 (" + t + ")");
+    }
+    if ((m = trimmed.match(/^All changes since (.+)$/i))) {
+      return text.replace(trimmed, "自 " + m[1] + " 以来的所有更改");
     }
     if ((m = trimmed.match(/^Last (\d+) days?$/i))) return text.replace(trimmed, "最近 " + m[1] + " 天");
     if ((m = trimmed.match(/^Last (\d+) hours?$/i))) return text.replace(trimmed, "最近 " + m[1] + " 小时");
