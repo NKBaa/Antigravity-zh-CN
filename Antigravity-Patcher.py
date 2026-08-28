@@ -112,7 +112,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Allow/deny agent read access to specific URLs or domains.": "允许/拒绝智能体读取特定 URL 或域名。",
     "Allow/deny specific terminal commands.": "允许/拒绝特定的终端命令。",
     "Allow/deny specific commands outside the sandbox.": "允许/拒绝沙盒外的特定命令。",
-    "Allow": "允许", "Deny": "拒绝", "Allow/deny": "允许/拒绝",
+    "Allow": "允许", "allow": "允许", "Deny": "拒绝", "deny": "拒绝", "Ask": "询问", "ask": "询问", "Allow/deny": "允许/拒绝",
     "Enter Queues after the turn": "Enter 键：在当前轮次后排队",
     "Alt+Enter Sends immediately": "Alt+Enter 键：立即发送",
     "Alt+Enter On empty prompt, sends next in queue": "Alt+Enter 键：在输入为空时，发送队列中的下一条",
@@ -146,7 +146,11 @@ DOM_TRANSLATOR_INJECTION = r"""
     "Terminal & Tooling Permissions": "终端与工具权限",
     "Terminal Commands": "终端命令", "Configure allowed terminal commands.": "配置允许执行的终端命令。",
     "Commands Outside Sandbox": "沙盒外命令", "Configure allowed commands outside the sandbox.": "配置允许在沙盒外执行的命令。",
+    "Allow/deny agent command execution outside the sandbox.": "允许/拒绝智能体在沙盒外执行命令。",
+    "Allow/deny agent command execution outside the sandbox": "允许/拒绝智能体在沙盒外执行命令",
     "MCP Tools": "MCP 工具", "Configure external tools via Model Context Protocol.": "通过模型上下文协议配置外部工具。",
+    "External tools the agent can call via Model Context Protocol.": "智能体可通过模型上下文协议调用的外部工具。",
+    "External tools the agent can call via Model Context Protocol": "智能体可通过模型上下文协议调用的外部工具",
 
     // Models & Usage Tab
     "Models & Usage": "模型与用量", "Manage your model quota and credits.": "管理您的模型配额和积分额度。",
@@ -318,7 +322,7 @@ DOM_TRANSLATOR_INJECTION = r"""
     "error": "错误", "warning": "警告", "info": "信息", "success": "成功", "failed": "失败", "pending": "等待中", "running": "运行中",
     "yes": "是", "no": "否", "true": "真", "false": "假", "on": "开", "off": "关", "enable": "启用", "disable": "禁用",
     "application": "应用", "applications": "应用", "remote": "远程", "control": "控制",
-    "plugin": "插件", "plugins": "插件", "allow": "允许", "deny": "拒绝", "inherit": "继承", "inherits": "继承",
+    "plugin": "插件", "plugins": "插件", "allow": "允许", "deny": "拒绝", "ask": "询问", "inherit": "继承", "inherits": "继承",
     "read": "读取", "reads": "读取", "write": "写入", "writes": "写入",
     "global": "全局", "retry": "重试", "regenerate": "重新生成", "dismiss": "忽略"
   };
@@ -423,6 +427,8 @@ DOM_TRANSLATOR_INJECTION = r"""
     ["Allow/deny agent read access to specific URLs or domains", "允许/拒绝智能体读取特定 URL 或域名。"],
     ["Allow/deny specific terminal commands", "允许/拒绝特定的终端命令。"],
     ["Allow/deny specific commands outside the sandbox", "允许/拒绝沙盒外的特定命令。"],
+    ["Allow/deny agent command execution outside the sandbox", "允许/拒绝智能体在沙盒外执行命令。"],
+    ["External tools the agent can call via Model Context Protocol", "智能体可通过模型上下文协议调用的外部工具。"],
 
     // Error and Fallback Links
     ["Confirming this undo action will make the following changes", "确认此撤销操作将做出以下更改："],
